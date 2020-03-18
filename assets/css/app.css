@@ -1,0 +1,45 @@
+/* APP */
+.keys {
+  display: flex;
+  flex-wrap: wrap;
+  /* flex: 1; */
+  min-height: calc(100vh - 100px);
+  align-items: center;
+  justify-content: center;
+}
+.key {
+  /* border: .4rem solid black; */
+  box-shadow: var(--normal-shadow);
+  border-radius: .5rem;
+  margin: 1rem;
+  font-size: 1.5rem;
+  padding: 1rem .5rem;
+  transition: all .02s ease;
+  width: 10rem;
+  text-align: center;
+  color: grey;
+  background: rgba(189, 189, 189, 0.4);
+}
+/* To prevent click events from key child elements */
+.key > * {
+  pointer-events: none;
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+.playing {
+  transform: scale(1.1);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 1rem var(--primary-color);
+}
+kbd {
+  display: block;
+  font-size: 4rem;
+}
+.sound {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+  color: var(--primary-color);
+}
