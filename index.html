@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="assets/css/app.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="icon" href="favicon.ico">
+  <link rel="manifest" href="/manifest.json">
 </head>
 <body>
   <header>
@@ -145,14 +147,28 @@
   }
 
   const allKeyElements = document.querySelectorAll('.key');
+  allKeyElements.forEach(key => key.addEventListener('touchstart', playSoundFromClick, false));
   allKeyElements.forEach(key => key.addEventListener('transitionend', removeTransition));
   allKeyElements.forEach(key => key.addEventListener('click', playSoundFromClick));
 
 
   window.addEventListener('keydown', playSoundFromKeyboard);
-
 </script>
 
+<!-- SERVICE WORKER REGISTRATION -->
+<script>
+  if('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('service-worker.js')
+      .then(reg => {
+        console.log('SW registered');
+      })
+      .catch(err => {
+        console.log('SW registration failed', err)
+      })
+    })
+  }
+</script>
 
 </body>
 </html>
