@@ -28,7 +28,7 @@ header, footer {
 }
 
 /* NAV */
-#left-drawer, #right-drawer {
+.left-drawer, .right-drawer {
   position: fixed;
   top: 0px;
   height: 100vh;
@@ -43,18 +43,18 @@ header, footer {
   flex-direction: column;
   padding-top: 30px;
 }
-#left-drawer {
+.left-drawer {
   left: -100vw;
   transition: left .3s;
 }
-#left-drawer.open {
+.left-drawer.open {
   left: 0;
 }
-#right-drawer {
+.right-drawer {
   right: -100vw;
   transition: right .3s;
 }
-#right-drawer.open {
+.right-drawer.open {
   right: 0;
 }
 nav button {

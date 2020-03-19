@@ -12,13 +12,26 @@
   <link rel="icon" href="favicon.ico">
   <link rel="manifest" href="/manifest.json">
 </head>
+
 <body>
   <header>
-    <button id="menu-button" class="icon-container">
+    <button
+      id="menu-button"
+      class="icon-container"
+      aria-label="menu"
+    >
       <i class="material-icons">
         menu
       </i>
     </button>
+
+    <nav id="left-drawer" class="left-drawer">
+      <button tabindex="-1" class="left-drawer-button">Regular drumkit</button>
+      <button tabindex="-1" class="left-drawer-button">OldSchool drumkit</button>
+      <button tabindex="-1" class="left-drawer-button">Tech drumkit</button>
+      <button tabindex="-1" class="left-drawer-button">Synth drumkit</button>
+    </nav>
+
     <div class="brand-name">
       <i class="material-icons">
         music_note
@@ -27,25 +40,25 @@
         MyDrumKit
       </span>
     </div>
-    <button id="more-button" class="icon-container">
+
+    <button
+      id="more-button"  
+      class="icon-container"
+      aria-label="options"
+    >
       <i class="material-icons">
         more_vert
       </i>
     </button>
-  </header>
 
-  <nav id="left-drawer">
-    <button>Regular drumkit</button>
-    <button>OldSchool drumkit</button>
-    <button>Tech drumkit</button>
-    <button>Synth drumkit</button>
-  </nav>
-  <nav id="right-drawer">
-    <button>Regular drumkit</button>
-    <button>OldSchool drumkit</button>
-    <button>Tech drumkit</button>
-    <button>Synth drumkit</button>
-  </nav>
+    <nav id="right-drawer" class="right-drawer">
+      <button tabindex="-1" class="right-drawer-button">Volume</button>
+      <button tabindex="-1" class="right-drawer-button">About</button>
+      <button tabindex="-1" class="right-drawer-button">Github</button>
+      <button tabindex="-1" class="right-drawer-button">Le laboratoire des possibles</button>
+    </nav>
+  </header>
+  
   <div id="background-layer" class="background-layer"></div>
 
   <div class="keys">
@@ -98,28 +111,34 @@
   <audio data-key="76" src="assets/sounds/tink.wav"></audio>
 
   <footer>
-
+    <div>Made with ❤ by Le Laboratoire des possibles</div>
   </footer>
 
 <script>
   // NAVIGATION DRAWER LOGIC
   const leftDrawerElement = document.getElementById('left-drawer');
   const rightDrawerElement = document.getElementById('right-drawer');
+  const leftDrawerButtons = document.querySelectorAll('.left-drawer-button');
+  const rightDrawerButtons = document.querySelectorAll('.right-drawer-button');
   const menuButtonElement = document.getElementById('menu-button');
   const moreButtonElement = document.getElementById('more-button');
   const backgroundLayerElement = document.getElementById('background-layer');
   menuButtonElement.addEventListener('click', function() {
     leftDrawerElement.classList.add('open');
     backgroundLayerElement.classList.add('active');
+    leftDrawerButtons.forEach(button => button.tabIndex = 0);
   })
   moreButtonElement.addEventListener('click', function() {
     rightDrawerElement.classList.add('open');
     backgroundLayerElement.classList.add('active');
+    rightDrawerButtons.forEach(button => button.tabIndex = 0);
   })
   backgroundLayerElement.addEventListener('click', function() {
     leftDrawerElement.classList.remove('open');
     rightDrawerElement.classList.remove('open');
     backgroundLayerElement.classList.remove('active');
+    leftDrawerButtons.forEach(button => button.tabIndex = -1);
+    rightDrawerButtons.forEach(button => button.tabIndex = -1);
   })
   
   function playSoundFromKeyboard(e) {
@@ -147,10 +166,9 @@
   }
 
   const allKeyElements = document.querySelectorAll('.key');
-  allKeyElements.forEach(key => key.addEventListener('touchstart', playSoundFromClick, false));
+  // allKeyElements.forEach(key => key.addEventListener('touchstart', playSoundFromClick, false));
   allKeyElements.forEach(key => key.addEventListener('transitionend', removeTransition));
   allKeyElements.forEach(key => key.addEventListener('click', playSoundFromClick));
-
 
   window.addEventListener('keydown', playSoundFromKeyboard);
 </script>
