@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width" initial-scale="1">
+  <meta name="theme-color" content="#000051">
   <title>MyDrumKit</title>
+
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/app-shell.css">
   <link rel="stylesheet" href="assets/css/app.css">
@@ -11,6 +13,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="icon" href="favicon.ico">
   <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
 </head>
 
 <body>
@@ -167,6 +170,7 @@
 
   const allKeyElements = document.querySelectorAll('.key');
   // allKeyElements.forEach(key => key.addEventListener('touchstart', playSoundFromClick, false));
+
   allKeyElements.forEach(key => key.addEventListener('transitionend', removeTransition));
   allKeyElements.forEach(key => key.addEventListener('click', playSoundFromClick));
 
